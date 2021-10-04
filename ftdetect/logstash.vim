@@ -16,6 +16,11 @@ fun! s:DetectLogstash()
 		let lnr = lnr + 1
 		let this_line = getline(lnr)
     endfor
+
+    " checking if filename contains logstash
+    if (expand('%:t') =~ 'logstash') && (expand('%:e') =~ 'conf')
+        set ft=logstash
+    endif
 endfun
 
 autocmd BufNewFile,BufRead *.conf call s:DetectLogstash()
